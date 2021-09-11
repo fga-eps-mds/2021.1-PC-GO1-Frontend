@@ -20,10 +20,19 @@ import CreateDocumentType from "./pages/FieldsRegister/CreateDocumentType";
 import CreatePublicWorker from "./pages/FieldsRegister/CreatePublicWorker";
 import CreateUnity from "./pages/FieldsRegister/CreateUnity";
 import CreateShelf from "./pages/FieldsRegister/CreateShelf";
-
+import AdministrativeProcess from "./pages/DocumentsRegister/AdministrativeProcess";
 import "./App.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import DocumentsRegister from "./pages/DocumentsRegister/DocumentsRegister";
+import CreateAdministrativeProcess from "./pages/DocumentsRegister/CreateAdministrativeProcess";
+import CreateFrequencyRelation from "./pages/DocumentsRegister/CreateFrequencyRelation";
+import FrequencyRelation from "./pages/DocumentsRegister/FrequencyRelation";
+import FrequencyDocument from "./pages/DocumentsRegister/FrequencyDocument";
+import CreateFrequencyDocument from "./pages/DocumentsRegister/CreateFrequencyDocument";
+import CreateArchivingRelation from "./pages/DocumentsRegister/CreateArchivingRelation";
+import ArchivingRelation from "./pages/DocumentsRegister/ArchivingRelation";
+
 
 function App() {
 	return (
@@ -33,6 +42,7 @@ function App() {
 					<Nav className="me-auto">
 						<Nav.Link href="/">Home</Nav.Link>
 						<Nav.Link href="/fields-register">Cadastro de Campos</Nav.Link>
+						<Nav.Link href="/documents-register">Cadastro de Documentos</Nav.Link>
 					</Nav>
 				</Container>
 			</Navbar>
@@ -41,6 +51,38 @@ function App() {
 				<Route exact path="/">
 					<Home />
 				</Route>
+				
+				<Route path="/documents-register">
+					<Route exact path="/documents-register">
+						<DocumentsRegister/>
+					</Route>
+					<Route path="/documents-register/administrative-process">
+						<AdministrativeProcess/>
+					</Route>
+					<Route path="/documents-register/frequency-relation">
+						<FrequencyRelation/>
+					</Route>
+					<Route path="/documents-register/frequency-document">
+						<FrequencyDocument/>
+					</Route>
+					<Route path="/documents-register/archiving-relation">
+						<ArchivingRelation/>
+					</Route>
+				</Route>
+				<Route path="/create-archiving-relation">
+					<CreateArchivingRelation/>
+				</Route>
+				<Route path="/create-frequency-document">
+					<CreateFrequencyDocument/>
+				</Route>
+				<Route path="/create-frequency-relation">
+					<CreateFrequencyRelation/>
+				</Route>
+				<Route path="/create-administrative-process">
+					<CreateAdministrativeProcess/>
+				</Route>
+
+
 				<Route path="/fields-register">
 					<Route exact path="/fields-register">
 						<FieldsRegister />
@@ -102,6 +144,33 @@ function App() {
 						</Route>
 					</Route>
 				</Route>
+<<<<<<< HEAD
+=======
+					
+					
+				<Route path="/create-box-abbreviation">
+					<CreateBoxAbbreviation />
+				</Route>
+				<Route path="/create-document-subject">
+					<CreateDocumentSubject />
+				</Route>
+				<Route path="/create-document-type">
+					<CreateDocumentType />
+				</Route>
+				<Route path="/create-public-worker">
+					<CreatePublicWorker />
+				</Route>
+				<Route path="/create-shelf">
+					<CreateShelf />
+				</Route>
+				<Route path="/create-status">
+					<CreateStatus />
+				</Route>
+				<Route path="/create-unity">
+					<CreateUnity />
+				</Route>
+				
+>>>>>>> d24ba7e... Foi criado esboço do front do cadastro de documentos, falta atualizar os atributos com as mudanças do back-end alem de estilizar os cards e as pages de cadatros de acordo com o prototipo de alta fidelidade
 			</Switch>
 		</Router>
 	);
