@@ -1,10 +1,9 @@
 import React from "react";
-
+// import { makeStyles } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
-import { Navbar, Container, Nav } from "react-bootstrap";
-
+import Header from "./pages/components/Header/index";
 import Home from "./pages/Home";
+
 import FieldsRegister from "./pages/FieldsRegister/FieldsRegister";
 import DocumentSubject from "./pages/FieldsRegister/DocumentSubject";
 import BoxAbbreviation from "./pages/FieldsRegister/BoxAbbreviation";
@@ -34,19 +33,19 @@ import CreateArchivingRelation from "./pages/DocumentsRegister/CreateArchivingRe
 import ArchivingRelation from "./pages/DocumentsRegister/ArchivingRelation";
 
 
+
 function App() {
+	// const useStyles = makeStyles({
+	// 	root: {
+	// 	  width: 100,
+	// 	},
+	//   });
+	  
+		// const classes = useStyles();
+	  
 	return (
 		<Router>
-			<Navbar bg="dark" variant="dark">
-				<Container>
-					<Nav className="me-auto">
-						<Nav.Link href="/">Home</Nav.Link>
-						<Nav.Link href="/fields-register">Cadastro de Campos</Nav.Link>
-						<Nav.Link href="/documents-register">Cadastro de Documentos</Nav.Link>
-					</Nav>
-				</Container>
-			</Navbar>
-
+			<Header />
 			<Switch>
 				<Route exact path="/">
 					<Home />
@@ -176,4 +175,40 @@ function App() {
 	);
 }
 
+
+/*
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
+
+export default function ButtonAppBar() {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.root}>
+    <AppBar position="static">
+        <Toolbar>
+          <Button color="inherit">Login</Button>
+        </Toolbar>
+    </AppBar>
+    </div>
+  );
+}
+*/
 export default App;
