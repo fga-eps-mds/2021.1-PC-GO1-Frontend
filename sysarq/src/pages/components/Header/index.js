@@ -1,5 +1,3 @@
-// import { makeStyles } from '@material-ui/core/styles';
-// import Typography from '@material-ui/core/Typography';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import StarsIcon from '@material-ui/icons/Stars';
@@ -9,14 +7,6 @@ import "./styles.css";
 import imgFolders from "../../../assets/folders.png";
 
 function Header() {
-	// const useStyles = makeStyles({
-	// 	root: {
-	// 	  width: 100,
-	// 	},
-	//   });
-	  
-	// 	const classes = useStyles();
-
     return (
         <div className="header">
             <a
