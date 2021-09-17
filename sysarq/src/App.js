@@ -1,9 +1,11 @@
 import React from "react";
-// import { makeStyles } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 import Header from "./pages/components/Header";
-import Home from "./pages/Home";
 import Footer from "./pages/components/Footer";
+
+import Home from "./pages/Home";
+import Login from "./pages/Login";
 
 import FieldsRegister from "./pages/FieldsRegister/FieldsRegister";
 import DocumentSubject from "./pages/FieldsRegister/DocumentSubject";
@@ -18,12 +20,11 @@ import CreateBoxAbbreviation from "./pages/FieldsRegister/CreateBoxAbbreviation"
 import CreateDocumentType from "./pages/FieldsRegister/CreateDocumentType";
 import CreateUnity from "./pages/FieldsRegister/CreateUnity";
 import CreateShelf from "./pages/FieldsRegister/CreateShelf";
-import AdministrativeProcess from "./pages/DocumentsRegister/AdministrativeProcess";
 import PublicWorker from "./pages/FieldsRegister/PublicWorker";
 import CreatePublicWorker from "./pages/FieldsRegister/CreatePublicWorker";
 import "./App.css";
 
-import "bootstrap/dist/css/bootstrap.min.css";
+import AdministrativeProcess from "./pages/DocumentsRegister/AdministrativeProcess";
 import DocumentsRegister from "./pages/DocumentsRegister/DocumentsRegister";
 import CreateAdministrativeProcess from "./pages/DocumentsRegister/CreateAdministrativeProcess";
 import CreateFrequencyRelation from "./pages/DocumentsRegister/CreateFrequencyRelation";
@@ -35,8 +36,9 @@ import ArchivingRelation from "./pages/DocumentsRegister/ArchivingRelation";
 
 
 
-function App() {
-	  
+import "bootstrap/dist/css/bootstrap.min.css"; 
+
+function App() {	  
 	return (
 		<Router>
 			<Header />
@@ -45,7 +47,11 @@ function App() {
 				<Route exact path="/">
 					<Home />
 				</Route>
-				
+
+				<Route path="/login">
+					<Login />
+				</Route>
+
 				<Route path="/documents-register">
 					<Route exact path="/documents-register">
 						<DocumentsRegister/>
