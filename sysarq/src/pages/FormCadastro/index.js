@@ -1,6 +1,5 @@
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
-// import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import * as React from "react";
@@ -8,6 +7,11 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import DateFnsUtils from '@date-io/date-fns';
+import {
+    MuiPickersUtilsProvider,
+    KeyboardDatePicker,
+  } from '@material-ui/pickers';
 
 import "./styles.css";
 
@@ -18,12 +22,6 @@ function FormCadastro({
     onClickBtn,
 }) {
 
-    const [age, setAge] = React.useState('');
-
-    const handleChange = (event) => {
-        setAge(event.target.value);
-      };
-
     const useStyles = makeStyles({
         input: {
             width: "100%",
@@ -33,8 +31,11 @@ function FormCadastro({
             color: "red",
         },
     });
-
+    // const label = { inputProps: { 'Montserrat': 'Checkbox demo' } };
     const classes = useStyles();
+
+    const [multiSelectValue] = React.useState([]);
+    const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18'));
 
     return (
         <Paper className="form-cadastro-container" elevation={10}>
@@ -52,22 +53,116 @@ function FormCadastro({
                                     <FormControl variant="standard" className={classes.input} sx={{ m: 1, minWidth: 120 }}>
                                         <InputLabel>{item.placeholder}</InputLabel>
                                         <Select
-                                        labelId="demo-simple-select-standard-label"
-                                        id="demo-simple-select-standard-label"
-                                        value={age}
-                                        onChange={handleChange}
-                                        label="Age"
+                                            labelId="demo-simple-select-standard-label"
+                                            id="demo-simple-select-standard-label"
+                                            value={item.state}
+                                            onChange={({ target }) => item.setState(target.value)}
+                                            label="Age"
                                         >
                                         <MenuItem value=""><em>None</em></MenuItem>
+                                        {
+                                            item.options && (
+                                                item.options.map((option) =>
+                                            <MenuItem value={option.value} key={option.value}>
+                                                <em>{option.description}</em>
+                                            </MenuItem>)
+                                            )
+                                        }
                                         </Select>
                                     </FormControl>
                                 );
                                 break;
 
+                            case "multi-select":
+                                input = (
+
+                                    <FormControl variant="standard" className={classes.input} sx={{ m: 1, minWidth: 120 }}>
+                                        <InputLabel>{item.placeholder}</InputLabel>
+                                        <Select
+                                            multiple
+                                            labelId="demo-simple-select-standard-label"
+                                            id="demo-simple-select-standard-label"
+                                            value={multiSelectValue}
+                                            renderValue={(selected) => selected.join(', ')}
+                                            onChange={({ target }) => item.setState([...target.value])}
+                                        >
+                                        <MenuItem disabled value=""><em>None</em></MenuItem>
+                                        {
+                                            item.options && (
+                                                item.options.map((option) =>
+                                            <MenuItem value={option.value} key={option.value}>
+                                                <em>{option.description}</em>
+                                            </MenuItem>)
+                                            )
+                                        }
+                                        </Select>
+                                    </FormControl>
+                                );
+                                
+                                break;
+
+                            case "date":
+                                input = (
+                                    <FormControl variant="standard">
+                                        <MuiPickersUtilsProvider utils={DateFnsUtils} >
+                                            <KeyboardDatePicker
+                                                disableToolbar
+                                                variant="inline"
+                                                format="dd/MM/yyyy"
+                                                margin="normal"
+                                                id="date-picker-inline"
+                                                label="Date picker inline"
+                                                value={selectedDate}
+                                                onChange={(dateS) => {
+                                                    const day = dateS.getDate();
+                                                    const month = dateS.getMonth();
+                                                    const year = dateS.getFullYear();
+                                                    const stringDate = `${year}-${month}-${day}`;
+                                                    // console.log('string: ', stringDate);
+                                                    item.setState(stringDate);
+                                                    setSelectedDate(stringDate);
+                                                }}
+                                                KeyboardButtonProps={{
+                                                    'aria-label': 'change date',
+                                                }}
+                                            />
+                                        </MuiPickersUtilsProvider>
+                                    </FormControl>
+                                    
+                                );
+                                break;
+
+                            case "select":
+                                input = (
+                                    <FormControl component="fieldset">
+                                    <FormGroup column>
+                                        <FormControlLabel
+                                        className={classes.input}
+                                        control={<Checkbox defaultChecked color="default" />}
+                                        label={item.placeholder}
+                                        labelPlacement="end"
+                                        />
+                                    </FormGroup>
+                                    </FormControl>
+                                );
+                                break;
+
+                            case "number":
+                                input = (
+                                <TextField
+                                    className={classes.input}
+                                    label={item.placeholder}
+                                    type="number"
+                                    onChange={({ target }) => item.setState(target.value)}
+                                    
+                                />);
+                            
+                                break;
+
                             default:
                                 input = (
                                     <TextField
-                                        placeholder={item.placeholder}
+                                        label={item.placeholder}
                                         onChange={({ target }) => item.setState(target.value)}
                                         className={classes.input}
                                     />
@@ -94,7 +189,7 @@ FormCadastro.propTypes = {
 	title: PropTypes.string.isRequired,
 	subtitle: PropTypes.string.isRequired,
     fields: PropTypes.arrayOf(Object).isRequired,
-    onClickBtn: PropTypes.func.isRequired
+    onClickBtn: PropTypes.func.isRequired,
 };
 
 export default FormCadastro;

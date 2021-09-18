@@ -34,7 +34,7 @@
 }
 
 .form-cadastro-container button {
-    margin-top: auto;
+    margin-top: 25px;
     padding: 1rem;
     border: 0;
     outline: 0;
@@ -44,7 +44,6 @@
     font-size: 1rem;
     letter-spacing: 1.25px;
     border-radius: 4px;
-
     transition: filter 0.4s;
 }
 

@@ -1,104 +1,58 @@
 import React, { useState } from "react";
+import FormCadastro from "../FormCadastro";
+import Api from "../../Api";
 
-import { Button, TextField } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-
-import axios from "axios";
-
-const hostApi = `${process.env.REACT_APP_URL_API}box-abbreviation`;
-const useStyles = makeStyles({
-	fields: {
-		marginTop: 20,
-		marginBotton: 20,
-		display: "block",
-	},
-});
+const hostApi = `${process.env.REACT_APP_URL_API}box-abbreviation/`;
 
 export default function CreateBoxAbbreviation() {
-	const [number, setNumber] = useState("");
-	const [abbreviation, setAbbreviation] = useState("");
-	const [name, setName] = useState("");
-	const [year, setBondYear] = useState("");
-
-	const classes = useStyles();
+	const [Number, setNumber] = useState(0);
+	const [Abbreviation, setAbbreviation] = useState("");
+	const [Name, setName] = useState("");
+	const [Year, setBondYear] = useState(0);
 
 	const onClick = () => {
-		axios
-			.post(hostApi, {
-				number,
-				abbreviation,
-				name,
-				year,
+		Api
+			.post(hostApiBox, {
+				number: Number,
+				abbreviation: Abbreviation,
+				name: Name,
+				year: Year,
 			})
 			.then(() => {})
 			.catch(() => {});
 	};
 
-	const onChangeNumber = (event) => {
-		setNumber(event.target.value);
-	};
-
-	const onChangeAbrevviation = (event) => {
-		setAbbreviation(event.target.value);
-	};
-
-	const onChangeName = (event) => {
-		setName(event.target.value);
-	};
-
-	const onChangeYear = (event) => {
-		setBondYear(event.target.value);
-	};
+	const[fields] = useState([
+		{
+			type: "number",
+			placeholder: "Número da caixa:",
+			setState: setNumber,
+		},
+		{
+			type: "text",
+			placeholder: "Sigla da Caixa:",
+			setState: setAbbreviation,
+		},
+		{
+			type: "text",
+			placeholder: "Nome Completo:",
+			setState: setName,
+		},
+		{
+			type: "number",
+			placeholder: "Ano:",
+			setState: setBondYear,
+		},
+	]);
 
 	return (
-		<div>
-			<h1>Sigla da Caixa</h1>
-			<TextField
-				id="numero-da-caixa-input"
-				className={classes.fields}
-				onChange={onChangeNumber}
-				type="number"
-				value={number}
-				label="Número da caixa"
-				variant="filled"
+		<div className="create-form-container">
+			<FormCadastro
+			title="Arquivo Geral da Policia Civil de Goiás"
+			subtitle="Cadastrar sigla da caixa"
+			fields={fields}
+			onClickBtn={onClick}
 			/>
-			<TextField
-				id="sigla-da-caixa-input"
-				className={classes.fields}
-				onChange={onChangeAbrevviation}
-				type="abbreviation"
-				value={abbreviation}
-				label="Sigla da caixa"
-				variant="filled"
-			/>
-			<TextField
-				id="nome-completo-input"
-				className={classes.fields}
-				onChange={onChangeName}
-				type="name"
-				value={name}
-				label="Nome completo"
-				variant="filled"
-			/>
-			<TextField
-				id="ano-input"
-				className={classes.fields}
-				onChange={onChangeYear}
-				type="year"
-				value={year}
-				label="Ano"
-				variant="filled"
-			/>
-
-			<Button
-				data-testid="click"
-				onClick={onClick}
-				style={{ marginTop: "20px" }}
-				variant="contained"
-				color="primary"
-			>
-				Salvar
-			</Button>
 		</div>
 	);
 }
