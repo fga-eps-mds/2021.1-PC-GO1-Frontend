@@ -18,6 +18,8 @@ import HomeWorkIcon from "@material-ui/icons/HomeWork";
 import ArchiveIcon from "@material-ui/icons/Archive";
 import AllInboxIcon from "@material-ui/icons/AllInbox";
 
+// TO-DO: Fundir os tipos de MenuCard
+
 const useStyles = makeStyles(() => ({
 	card: {
 		height: "100%",
