@@ -1,7 +1,7 @@
 #card {
-    border-radius: 15px;
     width: 100%;
     height: 100%;
+    border-radius: 10px;
     background-color: #5289B5;
     color: rgba(31, 53, 65, 1);
 }
@@ -13,8 +13,8 @@
 
 #text {
     padding: 2%;
-    line-height: 44px;
-    font-size: 25px;
+    line-height: 35px;
+    font-size: 20px;
     font-weight: bold;
     font-family: 'Monsterrat', sans-serif;
 }

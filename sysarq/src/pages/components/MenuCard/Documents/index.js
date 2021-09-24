@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import {
-	makeStyles, Card, CardContent, CardActionArea, Typography
+	makeStyles, Grid, Card, CardContent, CardActionArea, Typography
 } from "@material-ui/core";
 
 import AssignmentIcon from '@material-ui/icons/Assignment';
@@ -40,21 +40,23 @@ const Icon = ({ iconName }) => {
 	return icon;
 };
 
-const MenuCard = ({ icon, title, createUrl }) => (
-	<Card id="card">
-		<CardActionArea id="card-action" href={createUrl}>
-			<CardContent>
-				<Icon iconName={icon} />
-				<Typography id="text">{title}</Typography>
-			</CardContent>
-		</CardActionArea>
-	</Card>
+const MenuCard = ({ icon, title, url }) => (
+	<Grid item xs={12} sm={12} md={6} lg={3}>
+		<Card id="card">
+			<CardActionArea id="card-action" href={url}>
+				<CardContent>
+					<Icon iconName={icon} />
+					<Typography id="text">{title}</Typography>
+				</CardContent>
+			</CardActionArea>
+		</Card>
+	</Grid>
 );
 
 MenuCard.propTypes = {
 	icon: PropTypes.string.isRequired,
 	title: PropTypes.string.isRequired,
-	createUrl: PropTypes.string.isRequired,
+	url: PropTypes.string.isRequired,
 };
 
 export default MenuCard;
