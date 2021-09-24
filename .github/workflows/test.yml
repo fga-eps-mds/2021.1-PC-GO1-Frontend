@@ -21,20 +21,21 @@ jobs:
         with:
           fetch-depth: 0  # Evita clones rasos
 
-      - name: Criar arquivo .env
-        run: |
-          touch .env
-          echo REACT_APP_URL_API="http://0.0.0.0:8002/" >> .env
-          cat .env
-
-      - name: Executar teste 
-        run: sudo docker-compose run app yarn test --coverage --watchAll=false
-
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Criar arquivo .env
+        run: |
+          touch .env
+          echo REACT_APP_URL_API_PROFILE="http://0.0.0.0:8001/" >> .env
+          echo REACT_APP_URL_API_ARCHIVES="http://0.0.0.0:8002/" >> .env
+          cat .env
+
+      - name: Executar teste 
+        run: sudo docker-compose run app yarn test --coverage --watchAll=false
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1

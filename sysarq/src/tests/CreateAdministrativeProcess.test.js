@@ -3,10 +3,11 @@ import { rest } from "msw";
 
 import { render, screen, fireEvent, within } from "@testing-library/react";
 
-import CreateAdministrativeProcess from "../pages/DocumentsRegister/CreateAdministrativeProcess";
-
+import CreateAdministrativeProcess from "../pages/Documents/Create/AdministrativeProcess";
 
 const hostApiArchives = `${process.env.REACT_APP_URL_API_ARCHIVES}`;
+
+jest.setTimeout(10000);
 
 var documentSubjectRequestNumber = 0;
 var unitRequestNumber = 0;
@@ -237,7 +238,7 @@ describe("Create Administrative Process Screen Test", () => {
 		fireEvent.click(screen.getByRole("button", { name: /CADASTRAR/ }));
 		expect(screen.getByText("Insira o número do processo")).toBeInTheDocument();
 
-		fireEvent.change(screen.getByLabelText("Número de Processo*"), {
+		fireEvent.change(screen.getByLabelText("Número do Processo*"), {
 			target: { value: "131" },
 		});
 		expect(
@@ -312,7 +313,7 @@ describe("Create Administrative Process Screen Test", () => {
 		fireEvent.change(screen.getByLabelText("Referência"), {
 			target: { value: "03/2031" },
 		});
-		fireEvent.change(screen.getByLabelText("Número de Processo*"), {
+		fireEvent.change(screen.getByLabelText("Número do Processo*"), {
 			target: { value: "3234" },
 		});
 		fireEvent.change(screen.getByLabelText("CPF/CNPJ"), {

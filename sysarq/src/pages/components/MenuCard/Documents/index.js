@@ -2,24 +2,28 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import {
-	makeStyles, Grid, Card, CardContent, CardActionArea, Typography
+	makeStyles,
+	Grid,
+	Card,
+	CardContent,
+	CardActionArea,
+	Typography,
 } from "@material-ui/core";
 
-import AssignmentIcon from '@material-ui/icons/Assignment';
+import AssignmentIcon from "@material-ui/icons/Assignment";
 import DescriptionIcon from "@material-ui/icons/Description";
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import AllInboxIcon from '@material-ui/icons/AllInbox';
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
+import AllInboxIcon from "@material-ui/icons/AllInbox";
 
-import "./styles.css"
+import "./styles.css";
 
 // TO-DO: Fundir os tipos de MenuCard
-
 
 const useStyles = makeStyles(() => ({
 	icon: {
 		height: 125,
 		width: "100%",
-	}
+	},
 }));
 
 const Icon = ({ iconName }) => {
