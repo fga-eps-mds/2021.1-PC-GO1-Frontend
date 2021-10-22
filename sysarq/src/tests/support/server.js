@@ -169,7 +169,7 @@ export const server = setupServer(
 			req.body.notes === "note_test" &&
 			req.body.document_type_id === 34 &&
 			req.body.sender_unity === 40 &&
-			req.body.abbreviation_id === 43 &&
+			// req.body.abbreviation_id === 43 &&
 			req.body.shelf_id === 46 &&
 			req.body.rack_id === 48
 		) {
@@ -190,7 +190,7 @@ export const server = setupServer(
 			req.body.dest_unity_id === 40 &&
 			req.body.sender_unity === 38 &&
 			req.body.sender_user === "sender_worker_test" &&
-			req.body.abbreviation_id === 43 &&
+			// req.body.abbreviation_id === 43 &&
 			req.body.shelf_id === 46 &&
 			req.body.rack_id === 48 &&
 			req.body.is_filed === false &&
@@ -215,7 +215,7 @@ export const server = setupServer(
 			req.body.number_of_boxes === "10" &&
 			req.body.document_url === "" &&
 			req.body.cover_sheet === "" &&
-			req.body.abbreviation_id === 43 &&
+			// req.body.abbreviation_id === 43 &&
 			req.body.shelf_id === 46 &&
 			req.body.rack_id === 48 &&
 			req.body.document_type_id === 34

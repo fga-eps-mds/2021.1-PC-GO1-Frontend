@@ -99,7 +99,7 @@ describe("Create Archiving Relation Screen Test", () => {
 
 		input(NUMBER_OF_BOXES_FIELD_LABEL, 10);
 
-		await abbreviationSelector();
+		// await abbreviationSelector();
 
 		await shelfSelector();
 

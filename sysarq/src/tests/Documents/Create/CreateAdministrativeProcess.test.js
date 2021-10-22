@@ -170,7 +170,7 @@ describe("Create Administrative Process Screen Test", () => {
 
 		input("Servidor que Encaminhou", "sender_worker_test");
 
-		await abbreviationSelector();
+		// await abbreviationSelector();
 
 		await shelfSelector();
 

@@ -131,7 +131,7 @@ describe("Create Frequency Relation Screen Test", () => {
 
 		await screen.findByText("CADASTRAR");
 
-		await abbreviationSelector();
+		// await abbreviationSelector();
 
 		await shelfSelector();
 
