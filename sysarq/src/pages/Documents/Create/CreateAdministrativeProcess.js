@@ -27,7 +27,7 @@ import CardContainer from "../../components/Container/CardContainer";
 
 import NumberProcessInput from "../../components/Inputs/NumberProcessInput";
 import SenderUnitInput from "../../components/Inputs/SenderUnitInput";
-import AbbreviationInput from "../../components/Inputs/AbbreviationInput";
+import BoxInput from "../../components/Inputs/BoxInput";
 import ShelfInput from "../../components/Inputs/ShelfInput";
 import RackInput from "../../components/Inputs/RackInput";
 import NotesInput from "../../components/Inputs/NotesInput";
@@ -64,7 +64,7 @@ const CreateAdministrativeProcess = () => {
 	const [destinationUnit, setDestinationUnit] = useState("");
 	const [senderUnit, setSenderUnit] = useState("");
 	const [senderWorker, setSenderWorker] = useState("");
-	const [abbreviation, setAbbreviation] = useState("");
+	const [box, setBox] = useState("");
 	const [shelf, setShelf] = useState("");
 	const [rack, setRack] = useState("");
 	const [status, setStatus] = useState("");
@@ -172,7 +172,7 @@ const CreateAdministrativeProcess = () => {
 		setDestinationUnit("");
 		setSenderUnit("");
 		setSenderWorker("");
-		setAbbreviation("");
+		setBox("");
 		setShelf("");
 		setRack("");
 		setStatus("");
@@ -280,7 +280,7 @@ const CreateAdministrativeProcess = () => {
 						dest_unity_id: destinationUnit.id,
 						sender_unity: senderUnit.id,
 						sender_user: senderWorker,
-						abbreviation_id: abbreviation.id,
+						abbreviation_id: box.id,
 						shelf_id: shelf.id,
 						rack_id: rack.id,
 						is_filed: isStatusFiled(status),
@@ -506,11 +506,7 @@ const CreateAdministrativeProcess = () => {
 				/>
 			</Grid>
 
-			<AbbreviationInput
-				abbreviation={abbreviation}
-				set={setAbbreviation}
-				connectionError={connectionError}
-			/>
+			<BoxInput box={box} set={setBox} connectionError={connectionError} />
 
 			<ShelfInput
 				shelf={shelf}

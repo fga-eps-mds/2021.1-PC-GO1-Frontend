@@ -16,7 +16,7 @@ import { axiosArchives, axiosProfile } from "../../../Api";
 
 import CardContainer from "../../components/Container/CardContainer";
 
-import AbbreviationInput from "../../components/Inputs/AbbreviationInput";
+import BoxInput from "../../components/Inputs/BoxInput";
 import ShelfInput from "../../components/Inputs/ShelfInput";
 import RackInput from "../../components/Inputs/RackInput";
 import NotesInput from "../../components/Inputs/NotesInput";
@@ -32,7 +32,7 @@ const CreateFrequencySheet = () => {
 	const [workerClass, setWorkerClass] = useState("");
 	const [workplace, setWorkplace] = useState("");
 	const [district, setDistrict] = useState("");
-	const [abbreviation, setAbbreviation] = useState("");
+	const [box, setBox] = useState("");
 	const [shelf, setShelf] = useState("");
 	const [rack, setRack] = useState("");
 	const [notes, setNotes] = useState("");
@@ -116,7 +116,7 @@ const CreateFrequencySheet = () => {
 		setWorkerClass("");
 		setWorkplace("");
 		setDistrict("");
-		setAbbreviation("");
+		setBox("");
 		setShelf("");
 		setRack("");
 		setNotes("");
@@ -192,7 +192,7 @@ const CreateFrequencySheet = () => {
 						reference_period: formatDate(referencePeriod),
 						notes,
 						process_number: senderProcessNumber,
-						abbreviation_id: abbreviation.id,
+						abbreviation_id: box.id,
 						shelf_id: shelf.id,
 						rack_id: rack.id,
 					})
@@ -304,11 +304,7 @@ const CreateFrequencySheet = () => {
 				/>
 			</Grid>
 
-			<AbbreviationInput
-				abbreviation={abbreviation}
-				set={setAbbreviation}
-				connectionError={connectionError}
-			/>
+			<BoxInput box={box} set={setBox} connectionError={connectionError} />
 
 			<ShelfInput
 				shelf={shelf}

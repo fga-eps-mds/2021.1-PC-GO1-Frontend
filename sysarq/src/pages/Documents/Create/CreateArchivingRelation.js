@@ -65,7 +65,7 @@ const CreateArchivingRelation = () => {
 	const [receivedDate, setReceivedDate] = useState(initialDate);
 	const [documentType, setDocumentType] = useState("");
 	const [senderUnit, setSenderUnit] = useState("");
-	const [abbreviation, setAbbreviation] = useState("");
+	const [box, setBox] = useState("");
 	const [shelf, setShelf] = useState("");
 	const [rack, setRack] = useState("");
 	const [notes, setNotes] = useState("");
@@ -342,7 +342,7 @@ const CreateArchivingRelation = () => {
 		setReceivedDate(initialDate);
 		setDocumentType("");
 		setSenderUnit("");
-		setAbbreviation("");
+		setBox("");
 		setShelf("");
 		setRack("");
 		setNotes("");
@@ -417,8 +417,7 @@ const CreateArchivingRelation = () => {
 						document_url: "", //
 						cover_sheet: "", //
 						filer_user: "filer_user", //
-						abbreviation_id:
-							abbreviation.id === undefined ? "" : abbreviation.id,
+						abbreviation_id: box.id === undefined ? "" : box.id,
 						shelf_id: shelf.id === undefined ? "" : shelf.id,
 						rack_id: rack.id === undefined ? "" : rack.id, //
 						document_type_id: documentType.id,
@@ -507,8 +506,8 @@ const CreateArchivingRelation = () => {
 				senderUnit={senderUnit}
 				units={units}
 				senderUnitHelperText={senderUnitHelperText}
-				abbreviation={abbreviation}
-				setAbbreviation={setAbbreviation}
+				box={box}
+				setBox={setBox}
 				shelf={shelf}
 				setShelf={setShelf}
 				rack={rack}

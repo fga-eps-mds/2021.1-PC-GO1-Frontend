@@ -31,7 +31,7 @@ const CreateFrequencyRelation = () => {
 	const [receivedDate, setReceivedDate] = useState(initialDate);
 	const [documentType, setDocumentType] = useState("");
 	const [senderUnit, setSenderUnit] = useState("");
-	const [abbreviation, setAbbreviation] = useState("");
+	const [box, setBox] = useState("");
 	const [shelf, setShelf] = useState("");
 	const [rack, setRack] = useState("");
 	const [notes, setNotes] = useState("");
@@ -78,7 +78,7 @@ const CreateFrequencyRelation = () => {
 		setReceivedDate(initialDate);
 		setDocumentType("");
 		setSenderUnit("");
-		setAbbreviation("");
+		setBox("");
 		setShelf("");
 		setRack("");
 		setNotes("");
@@ -148,7 +148,7 @@ const CreateFrequencyRelation = () => {
 						received_date: formatDate(receivedDate),
 						reference_period: referencePeriod,
 						sender_unity: senderUnit.id,
-						abbreviation_id: abbreviation.id,
+						abbreviation_id: box.id,
 						shelf_id: shelf.id,
 						rack_id: rack.id,
 						document_type_id: documentType.id,
@@ -215,8 +215,8 @@ const CreateFrequencyRelation = () => {
 				setDocumentType={setDocumentType}
 				senderUnit={senderUnit}
 				setSenderUnit={setSenderUnit}
-				abbreviation={abbreviation}
-				setAbbreviation={setAbbreviation}
+				box={box}
+				setBox={setBox}
 				shelf={shelf}
 				setShelf={setShelf}
 				rack={rack}

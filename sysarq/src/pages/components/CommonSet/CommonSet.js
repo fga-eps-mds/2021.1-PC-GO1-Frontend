@@ -6,7 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import ReceivedDateInput from "../Inputs/ReceivedDateInput";
 import DocumentTypeInput from "../Inputs/DocumentTypeInput";
 import SenderUnitInput from "../Inputs/SenderUnitInput";
-import AbbreviationInput from "../Inputs/AbbreviationInput";
+import BoxInput from "../Inputs/BoxInput";
 import ShelfInput from "../Inputs/ShelfInput";
 import RackInput from "../Inputs/RackInput";
 import NotesInput from "../Inputs/NotesInput";
@@ -26,8 +26,8 @@ const CommonSet = ({
 	senderUnit,
 	units,
 	senderUnitHelperText,
-	abbreviation,
-	setAbbreviation,
+	box,
+	setBox,
 	shelf,
 	setShelf,
 	rack,
@@ -61,11 +61,7 @@ const CommonSet = ({
 			senderUnitHelperText={senderUnitHelperText}
 		/>
 
-		<AbbreviationInput
-			abbreviation={abbreviation}
-			set={setAbbreviation}
-			connectionError={connectionError}
-		/>
+		<BoxInput box={box} set={setBox} connectionError={connectionError} />
 
 		<ShelfInput
 			shelf={shelf}
@@ -94,8 +90,8 @@ CommonSet.propTypes = {
 	senderUnit: PropTypes.string.isRequired,
 	units: PropTypes.arrayOf(PropTypes.string).isRequired,
 	senderUnitHelperText: PropTypes.string.isRequired,
-	abbreviation: PropTypes.string.isRequired,
-	setAbbreviation: PropTypes.func.isRequired,
+	box: PropTypes.string.isRequired,
+	setBox: PropTypes.func.isRequired,
 	shelf: PropTypes.string.isRequired,
 	setShelf: PropTypes.func.isRequired,
 	rack: PropTypes.string.isRequired,
