@@ -38,7 +38,7 @@ const ShelfInput = ({ set, connectionError, shelf }) => {
 	}, []);
 
 	return (
-		<Grid item xs={12} sm={6} md={4}>
+		<Grid item xs={12} sm={6} md={6}>
 			<FormControl fullWidth>
 				<InputLabel id="select-shelf-label">Estante</InputLabel>
 				<Select
