@@ -161,6 +161,38 @@ export const server = setupServer(
 		)
 	),
 
+	rest.get(
+		`${hostApiArchives}year-by-abbreviation/:boxAbbreviation`,
+		(req, res, ctx) =>
+			res(
+				ctx.json([
+					{
+						id: 43,
+						number: 44,
+						abbreviation: "abbreviation_test",
+						name: "abbreviation_name_test",
+						year: 2045,
+					},
+				])
+			)
+	),
+
+	rest.get(
+		`${hostApiArchives}number-by-year-abbrevation/:boxAbbreviation/:boxYear`,
+		(req, res, ctx) =>
+			res(
+				ctx.json([
+					{
+						id: 43,
+						number: 44,
+						abbreviation: "abbreviation_test",
+						name: "abbreviation_name_test",
+						year: 2045,
+					},
+				])
+			)
+	),
+
 	rest.post(`${hostApiArchives}frequency-relation/`, (req, res, ctx) => {
 		if (
 			req.body.number === "27" &&
@@ -190,7 +222,7 @@ export const server = setupServer(
 			req.body.dest_unity_id === 40 &&
 			req.body.sender_unity === 38 &&
 			req.body.sender_user === "sender_worker_test" &&
-			// req.body.abbreviation_id === 43 &&
+			req.body.abbreviation_id === 43 &&
 			req.body.shelf_id === 46 &&
 			req.body.rack_id === 48 &&
 			req.body.is_filed === false &&

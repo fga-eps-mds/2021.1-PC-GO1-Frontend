@@ -7,7 +7,7 @@ import {
 	submitClick,
 	documentTypeSelector,
 	senderUnitSelector,
-	abbreviationSelector,
+	boxSelector,
 	shelfSelector,
 	rackSelector,
 } from "../../support";
@@ -216,5 +216,24 @@ describe("Create Archiving Relation Screen Test", () => {
 
 		const successAlert = await screen.findByRole("alert");
 		expect(successAlert).toHaveTextContent(/Documento cadastrado!/i);
+	});
+
+	it("invalid refresh token", async () => {
+		localStorage.setItem("tkr", 401);
+
+		render(<CreateArchivingRelation />);
+
+		await screen.findByText("Relação de Arquivamento");
+	});
+
+	it("refresh token connection error", async () => {
+		localStorage.setItem("tkr", 404);
+
+		render(<CreateArchivingRelation />);
+
+		const errorAlert = await screen.findByRole("alert");
+		expect(errorAlert).toHaveTextContent(
+			/Verifique sua conexão com a internet e recarregue a página./i
+		);
 	});
 });

@@ -61,7 +61,7 @@ describe("Create Frequency Relation Screen Test", () => {
 		input("Número do Processo Encaminhador", "1");
 		input("Nome do Servidor*", "teste");
 		input("Cargo*", "teste");
-		
+
 		// await abbreviationSelector();
 
 		await shelfSelector();

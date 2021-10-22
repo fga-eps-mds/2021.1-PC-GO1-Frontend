@@ -4,7 +4,7 @@ import { server } from "../../support/server";
 import {
 	input,
 	submitClick,
-	abbreviationSelector,
+	boxSelector,
 	shelfSelector,
 	rackSelector,
 } from "../../support";
@@ -34,7 +34,7 @@ const UNARCHIVE_DATE_LABEL = "Data de Desarquivamento";
 const REFERENCE_FIELD_LABEL = "Referência";
 
 describe("Create Administrative Process Screen Test", () => {
-	it("complete test", async () => {
+	it("validations and network error", async () => {
 		render(<CreateAdministrativeProcess />);
 
 		input(NOTICE_DATE_LABEL, "");
@@ -103,8 +103,8 @@ describe("Create Administrative Process Screen Test", () => {
 		expect(
 			screen.queryByText("Insira somente números")
 		).not.toBeInTheDocument();
-		submitClick();
 
+		submitClick();
 		expect(screen.getByText("Insira um CPF/CNPJ válido")).toBeInTheDocument();
 
 		input("CPF/CNPJ", "");
@@ -151,15 +151,27 @@ describe("Create Administrative Process Screen Test", () => {
 			/Verifique sua conexão com a internet e recarregue a página./i
 		);
 
-		input(REFERENCE_FIELD_LABEL, "04/2015");
-
-		input("CPF/CNPJ", "28293031323");
-
 		fireEvent.mouseDown(screen.getByLabelText("Status*"));
 		const statusOptions1 = within(screen.getByRole("listbox"));
 		fireEvent.click(statusOptions1.getByText("Arquivado"));
 
 		submitClick();
+	});
+
+	it("success", async () => {
+		render(<CreateAdministrativeProcess />);
+
+		input(NOTICE_DATE_LABEL, "03/04/2005");
+		input(ARCHIVING_DATE_LABEL, "09/10/2011");
+		input(REFERENCE_FIELD_LABEL, "04/2015");
+		input("Número do Processo*", "16");
+		input("CPF/CNPJ", "28293031323");
+		input("Interessado*", "interested_test");
+
+		fireEvent.mouseDown(screen.getByLabelText("Assunto do Documento*"));
+		const subjectsOptions = within(screen.getByRole("listbox"));
+		await subjectsOptions.findByText("subject_name_test");
+		fireEvent.click(subjectsOptions.getByText(/subject_name_test/i));
 
 		fireEvent.mouseDown(screen.getByLabelText("Unidade de Destino"));
 		const destinationUnitOptions = within(screen.getByRole("listbox"));
@@ -168,9 +180,14 @@ describe("Create Administrative Process Screen Test", () => {
 			destinationUnitOptions.getByText(/destination_unit_name_test/i)
 		);
 
+		fireEvent.mouseDown(screen.getByLabelText("Unidade que Encaminhou*"));
+		const senderUnitOptions = within(screen.getByRole("listbox"));
+		await senderUnitOptions.findByText("sender_unit_name_test");
+		fireEvent.click(senderUnitOptions.getByText(/sender_unit_name_test/i));
+
 		input("Servidor que Encaminhou", "sender_worker_test");
 
-		// await abbreviationSelector();
+		await boxSelector();
 
 		await shelfSelector();
 
@@ -227,7 +244,6 @@ describe("Create Administrative Process Screen Test", () => {
 
 		submitClick();
 
-		const successAlert = await screen.findByRole("alert");
-		expect(successAlert).toHaveTextContent(/Documento cadastrado!/i);
+		await screen.findByText("Documento cadastrado!");
 	});
 });

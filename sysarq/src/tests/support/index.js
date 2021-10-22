@@ -8,11 +8,21 @@ export const submitClick = () => {
 	fireEvent.click(screen.getByRole("button", { name: /CADASTRAR/ }));
 };
 
-export const abbreviationSelector = async () => {
+export const boxSelector = async () => {
 	fireEvent.mouseDown(screen.getByLabelText("Sigla da Caixa"));
-	const abbreviationOptions = within(screen.getByRole("listbox"));
-	await abbreviationOptions.findByText("abbreviation_test");
-	fireEvent.click(abbreviationOptions.getByText(/abbreviation_test/i));
+	const boxAbbreviationOptions = within(screen.getByRole("listbox"));
+	await boxAbbreviationOptions.findByText("abbreviation_test");
+	fireEvent.click(boxAbbreviationOptions.getByText(/abbreviation_test/i));
+
+	fireEvent.mouseDown(screen.getByLabelText("Ano da Caixa"));
+	const boxYearOptions = within(screen.getByRole("listbox"));
+	await boxYearOptions.findByText("2045");
+	fireEvent.click(boxYearOptions.getByText(/2045/i));
+
+	fireEvent.mouseDown(screen.getByLabelText("Número da Caixa"));
+	const boxOptions = within(screen.getByRole("listbox"));
+	await boxOptions.findByText("44");
+	fireEvent.click(boxOptions.getByText(/44/i));
 };
 
 export const shelfSelector = async () => {
