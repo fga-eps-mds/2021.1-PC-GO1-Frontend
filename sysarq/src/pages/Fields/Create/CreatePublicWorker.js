@@ -1,10 +1,16 @@
 import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { validateBr } from 'js-brasil';
 import { axiosArchives, axiosProfile } from "../../../Api";
 import createForm from "../form";
 import { axiosProfileError } from "../../../support";
 
-const isCpfValid = (cpfLength) => cpfLength === 11;
+/* const maskCpf = (cpf) => {
+	if(cpf === 11){
+		return true;
+	}
+	return false;
+} */
 
 const useStyles = makeStyles({
 	input: {
@@ -24,6 +30,7 @@ const useStyles = makeStyles({
 
 export default function CreatePublicWorker() {
 	const classes = useStyles();
+
 
 	const [workerName, setName] = useState("");
 	const [workerCpf, setCpf] = useState("");
@@ -49,13 +56,17 @@ export default function CreatePublicWorker() {
 		);
 	};
 
+	/* if(maskCpf(workerCpf.length)){
+		setCpf(`${maskBr.cpf(workerCpf)}`);
+	} */
 	const onClick = () => {
+
 		if (workerName === "") {
 			setNameError(true);
 			setNameHelperText("Insira um nome");
 			return "Erro";
 		}
-		if (!isCpfValid(workerCpf.length)) {
+		if (!validateBr.cpf(workerCpf)) {
 			setCpfError(true);
 			setCpfHelperText("Insira um CPF válido");
 			return "Erro";
@@ -85,12 +96,13 @@ export default function CreatePublicWorker() {
 					.catch(() => {
 						connectionError();
 					});
-
 				return res;
 			})
 			.catch((error) => {
 				axiosProfileError(error, connectionError);
 			});
+			setCpf('');
+			setName('');
 		return null;
 	};
 
@@ -108,6 +120,7 @@ export default function CreatePublicWorker() {
 		{
 			type: "text",
 			placeholder: "CPF*",
+			maxlength: 11,
 			setValue: setCpf,
 			value: workerCpf,
 			helperText: cpfHelperText,
@@ -120,7 +133,7 @@ export default function CreatePublicWorker() {
 	const pageTitle = "Arquivo Geral da Policia Civil de Goiás";
 	const pageSubtitle = "Cadastrar servidor";
 
-	return createForm(
+	return createForm(		
 		values,
 		pageTitle,
 		pageSubtitle,
