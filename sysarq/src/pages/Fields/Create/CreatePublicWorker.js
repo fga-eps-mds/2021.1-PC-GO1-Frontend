@@ -59,15 +59,19 @@ export default function CreatePublicWorker() {
 	/* if(maskCpf(workerCpf.length)){
 		setCpf(`${maskBr.cpf(workerCpf)}`);
 	} */
+
 	const onClick = () => {
+
+		const cpfNumbers = workerCpf.replace(/\D/g, "");
 
 		if (workerName === "") {
 			setNameError(true);
 			setNameHelperText("Insira um nome");
 			return "Erro";
 		}
-		if (!validateBr.cpf(workerCpf)) {
+		if (!validateBr.cpf(cpfNumbers)) {
 			setCpfError(true);
+			console.log(cpfNumbers);
 			setCpfHelperText("Insira um CPF válido");
 			return "Erro";
 		}
@@ -84,7 +88,7 @@ export default function CreatePublicWorker() {
 						`public-worker/`,
 						{
 							name: workerName,
-							cpf: workerCpf,
+							cpf: cpfNumbers,
 						},
 						{ headers: { Authorization: `JWT ${localStorage.getItem("tk")}` } }
 					)
